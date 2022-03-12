@@ -5,8 +5,7 @@
 	"main": "dist/index.js",
 	"types": "types/index.d.ts",
 	"scripts": {
-		"test": "mocha",
-		"publish": "pnpm publish --access=public --publish-branch=main"
+		"test": "mocha"
 	},
 	"repository": {
 		"type": "git",
