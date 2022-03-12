@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const { Subscribeable } = require('..');
+const { Subscribeable } = require('../types');
 
 const suite = new Benchmark.Suite();
 const sub = new Subscribeable();
