@@ -8,7 +8,7 @@ describe('Subscribeable', () => {
 		it('should update the subscriber map', () => {
 			sub.subscribe('test', () => {});
 
-			expect(sub.subscribers.get('test')).to.be.an('array');
+			expect(sub.subscribers.get('test')).to.be.an('object'); // there's only one
 		});
 
 		it('should not override existing subscribers', () => {
@@ -24,17 +24,26 @@ describe('Subscribeable', () => {
 
 			sub.unsubscribe('ready', num);
 
-			expect(sub.subscribers.get('ready')).to.have.lengthOf(0);
+			expect(sub.subscribers.get('ready')).to.be.undefined;
 		});
 
-		it('should only remove one subscriber from the subscriber map', () => {
-			sub.subscribe('map_test', () => undefined);
-			let num = sub.subscribe('map_test', () => undefined);
+		it('should remove all subscribers for that function and event from the subscriber map', () => {
+			sub.subscribe('map_test', console.log);
+			sub.subscribe('map_test', console.log);
 
-			sub.unsubscribe('map_test', num);
+			sub.unsubscribe('map_test', console.log);
 
-			expect(sub.subscribers.get('map_test')).to.have.lengthOf(1);
+			expect(sub.subscribers.get('map_test')).to.be.undefined;
 		});
+
+                it('should not remove other event subscribers from the subscriber map', () => {
+                        sub.subscribe('map_test2', () => undefined);
+                        sub.subscribe('map_test3', () => undefined);
+
+                        sub.unsubscribe('map_test3', () => undefined);
+
+                        expect(sub.subscribers.get('map_test2')).to.be.an('object');
+                });
 	});
 
 	sub.clearAllSubscribers();
@@ -114,7 +123,7 @@ describe('Subscribeable', () => {
 			sub.clearSubscribers('test');
 
 			expect(sub.subscribers.get('test')).to.be.undefined;
-			expect(sub.subscribers.get('test2')).to.have.lengthOf(1);
+			expect(sub.subscribers.get('test2')).to.be.an('object');
 		});
 	});
 

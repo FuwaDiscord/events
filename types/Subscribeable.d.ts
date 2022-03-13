@@ -1,9 +1,11 @@
 import { SubscriptionBuilder } from './SubscriptionBuilder.js';
 export declare class Subscribeable {
-    subscribers: Map<string, Array<EventSubscriber>>;
+    #private;
+    /** @deprecated */
+    get subscribers(): Map<string, EventSubscriber[]>;
     subscribe(event: string, subscriber: EventSubscriber): number;
     event(event: string): SubscriptionBuilder;
-    unsubscribe(event: string, subscriber: number): void;
+    unsubscribe(event: string, subscriber: EventSubscriber): void;
     clearSubscribers(event: string): void;
     publish(event: string, ...data: any[]): number;
     clearAllSubscribers(): void;

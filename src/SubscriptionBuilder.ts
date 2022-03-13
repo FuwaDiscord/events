@@ -101,7 +101,7 @@ export class SubscriptionBuilder {
 	public unsubscribe(): void {
 		this.subscribeable.unsubscribe(
 			this.eventName,
-			this.__handleFunc.bind(this)
+                        this.__handleFunc.bind(this)
 		);
 	}
 }
