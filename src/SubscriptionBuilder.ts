@@ -1,5 +1,3 @@
-import { Subscribeable } from './Subscribeable.js';
-
 export class SubscriptionBuilder {
 	/**
 	 * Filters to be run before the {@link SubscriptionBuilder.handler handler} is called.
@@ -92,16 +90,21 @@ export class SubscriptionBuilder {
 	 * Finalizes the subscription and adds it to the event emitter.
 	 */
 	public subscribe(): void {
-		this.subscribeable.subscribe(this.eventName, this.__handleFunc.bind(this));
+		this.subscribeable.addListener(this.eventName, this.__handleFunc.bind(this));
 	}
 
 	/**
 	 * Removes the subscription from the event emitter.
 	 */
 	public unsubscribe(): void {
-		this.subscribeable.unsubscribe(
+		this.subscribeable.removeListener(
 			this.eventName,
                         this.__handleFunc.bind(this)
 		);
 	}
+}
+
+export interface Subscribeable {
+  addListener(eventName: string, handler: (...data: any[]) => void | Promise<void>): any;
+  removeListener(eventName: string, handler: (...data: any[]) => void | Promise<void>): any
 }

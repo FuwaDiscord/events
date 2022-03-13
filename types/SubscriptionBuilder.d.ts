@@ -1,4 +1,3 @@
-import { Subscribeable } from './Subscribeable.js';
 export declare class SubscriptionBuilder {
     eventName: string;
     private subscribeable;
@@ -53,4 +52,8 @@ export declare class SubscriptionBuilder {
      * Removes the subscription from the event emitter.
      */
     unsubscribe(): void;
+}
+export interface Subscribeable {
+    addListener(eventName: string, handler: (...data: any[]) => void | Promise<void>): any;
+    removeListener(eventName: string, handler: (...data: any[]) => void | Promise<void>): any;
 }
