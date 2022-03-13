@@ -14,6 +14,11 @@ suite.add('Subscribeable#publish (1)', () => {
 	sub.publish('test', 'test');
 });
 
+suite.add('Subscribeable#unsubscribe (1)', () => {
+        sub.unsubscribe('test', 0);
+        queueMicrotask(() => sub.subscribe('test', () => {}));
+})!
+
 suite.on('cycle', (event) => {
 	console.log(String(event.target));
 });
