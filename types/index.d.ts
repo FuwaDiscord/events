@@ -1,1 +1,2 @@
-export * from './SubscriptionBuilder.js';
+export = Subscribeable;
+import Subscribeable = require('./Subscribeable.js');

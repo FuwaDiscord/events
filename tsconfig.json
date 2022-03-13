@@ -1,15 +1,16 @@
 {
-	"compilerOptions": {
-		"target": "es2015",
-		"module": "commonjs",
-		"outDir": "./dist",
-		"strict": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"declaration": true,
-		"declarationDir": "types",
-		"sourceMap": true
-	},
-	"include": ["src/**/*.ts"]
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "emitDeclarationOnly": true,
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["src/**/*.js"]
 }
