@@ -60,6 +60,7 @@ declare class Subscribeable {
 }
 declare namespace Subscribeable {
   export { EventSubscriber };
+  export { SubscriptionBuilder };
 }
 type EventSubscriber = {
   handler: (...data: any[]) => void | Promise<void>;
